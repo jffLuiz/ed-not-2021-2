@@ -1,6 +1,12 @@
 #algoritmo de busca sequencial
 # dada uma lista e um valor de busca, percorre a lista verificando se cada elemento da lista corresponde ao valor de busca. A busca para quando o valor de busca é encontrado ou quando a lista é totalmente percorrida, sem encontrar o valor de busca
 
+#numero de comparações em uma lista de n elementos
+#quando um elemento existe: pos + 1 comparações
+#quando um elemento não existe: n comparações
+
+
+from time import time #importar ferramento para medir o tempo de execução de codigos
 from data.lista_nomes import nomes
 
 def busca_sequencial(lista, valor_busca):
@@ -25,6 +31,30 @@ print(f"numero de elemento da lista: {len(primos)}")
 
 print("------------------")
 
+hora_ini = time()
 print(f"posição de fausto: {busca_sequencial(nomes, 'FAUSTO')}")
+hora_fim = time()
+print(f"tempo gasto procurando fausto: {(hora_fim - hora_ini)*1000}ms")
+
+hora_ini = time()
 print(f"posição de zuleica: {busca_sequencial(nomes, 'ZULEICA')}")
+hora_fim = time()
+print(f"tempo gasto procurando zuleica: {(hora_fim - hora_ini)*1000}ms")
+
+
+hora_ini = time()
 print(f"posição de orkutilson: {busca_sequencial(nomes, 'ORKUTILSON')}")
+hora_fim = time()
+print(f"tempo gasto procurando orkutilson: {(hora_fim - hora_ini)*1000}ms")
+
+
+hora_ini = time()
+print(f"posição de Belerina: {busca_sequencial(nomes, 'BELERINA')}")
+hora_fim = time()
+print(f"tempo gasto procurando belerina: {(hora_fim - hora_ini)*1000}ms")
+
+hora_ini = time()
+print(f"posição de Jefferson: {busca_sequencial(nomes, 'JEFFERSON')}")
+hora_fim = time()
+print(f"tempo gasto procurando Jefferson: {(hora_fim - hora_ini)*1000}ms")
+
