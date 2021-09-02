@@ -5,8 +5,16 @@
 #   Em seguida, usando a técnica de mesclagem (merge), "remonta" o vetor,
 #   dessa vez com os elementos já em ordem.
 
+comps = 0
+divisoes = 0 
+juncoes = 0
+
 def merge_sort(lista):
     ''' função que complementa o algorimo merge sorte usando o metodo recursivo'''
+
+    # não podemos zerar as variaveis globais de estatistica dentro da função , pq ela é recursiva, e resetaria a contagem a cada chamada
+    global comps, divisoes, juncoes
+    
 
     #print(f'lista recebida: {lista}')
 
@@ -21,6 +29,8 @@ def merge_sort(lista):
 
     #gerar cópia da segunda metade da lista
     lista_dir = lista[meio:] #do meio ao fim
+
+    divisoes += 1
 
     #chamamos recursivamente a função para continuar
     #repartindo a lista em metades
@@ -44,6 +54,8 @@ def merge_sort(lista):
         else:
             ordenada.append(lista_dir[pos_dir])
             pos_dir += 1
+
+        comps +=1 
     
     sobra = None # a sobra da lista que ficou para trás
 
@@ -54,9 +66,14 @@ def merge_sort(lista):
 
     # print(f'>>> final ordenada: {ordenada+sobra}')
 
+    juncoes += 1 
+    
     return ordenada + sobra # "soma" de duas listas
 
 ########################################################
+comps = 0
+divisoes = 0 
+juncoes = 0
 
 nums = [88, 44, 33, 0, 99, 55, 77, 22, 11, 66]
 
@@ -68,6 +85,10 @@ print(nums_ord)
 from data.nomes_desord import nomes
 from time import time
 import tracemalloc
+
+comps = 0
+divisoes = 0 
+juncoes = 0
 
 ini=time()
 tracemalloc.start() #inicia a medição de consumo de memória
@@ -82,8 +103,9 @@ fim=time()
 print(nomes_ord)
 print(f"Tempo: {fim-ini}")
 print(f'pico de memoria: {mem_pico / 1024 / 1024}mb')
+print(f"comparações: {comps} ; divisoes: {divisoes} ; junçoes: {juncoes}")
 
 
 
-tracemalloc.stop() #ifinaliza a medição de consumo de memória
+tracemalloc.stop() #finaliza a medição de consumo de memória
 
