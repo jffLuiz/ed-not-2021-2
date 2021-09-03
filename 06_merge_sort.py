@@ -85,6 +85,7 @@ print(nums_ord)
 from data.nomes_desord import nomes
 from time import time
 import tracemalloc
+import psutil
 
 comps = 0
 divisoes = 0 
@@ -109,3 +110,4 @@ print(f"comparações: {comps} ; divisoes: {divisoes} ; junçoes: {juncoes}")
 
 tracemalloc.stop() #finaliza a medição de consumo de memória
 
+print('The CPU usage is: ', psutil.cpu_percent(4))
