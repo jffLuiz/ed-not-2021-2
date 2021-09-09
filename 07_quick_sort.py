@@ -70,7 +70,7 @@ print(f"passadas: {passadas}, comparações: {comps}, trocas: {trocas}")
 from data.nomes_desord import nomes
 from time import time
 import tracemalloc
-import psutil
+
 
 passadas=0
 comps=0
@@ -97,5 +97,5 @@ print(f'pico de memoria: {mem_pico / 1024 / 1024}mb')
 
 tracemalloc.stop()
 
-print('The CPU usage is: ', psutil.cpu_percent(4))
+
 
