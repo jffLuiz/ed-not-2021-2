@@ -41,7 +41,7 @@ def quick_sort(lista, ini=0, fim=None):
                 trocas+=1
     
     #depois que o percurso de i acaba, div ainda é incrementado mais uma vez
-    div += 1
+    
 
     #colocamos o pivo em seu lugar definitivo, a troca acontece se o valor do pivo for menor que o valor da posição div
     comps+=1
