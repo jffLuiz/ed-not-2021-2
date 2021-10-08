@@ -61,16 +61,68 @@ class LinkedList:
         #4ºCASO: inserção em posição intermediaria
         else:
             before = self.__head
+            
+            #percorre a lista encadeada da segunda posição (pos. 1) até a posição anterior aquela da inserção
+            for i in range(1, pos): before = before.next 
+                
+            #nodo de ficará dapois do inserido
+            after = before.next
 
-            #percorre a lista encadeada até a posição anterior aquela da inserção
-            for i in range(1, pos): 
-                print(f"before.data: {before.data}, i: {i}")
-                before = before.next 
+            #o next do nodo inserido passa a ser o after
+            inserted.next = after
 
+            #o next do nodo before passa a ser o inserted
+            before.next = inserted
 
         self.__count += 1
 
-        #print(f"[NODE] data: {inserted.data}, next: {inserted.next}")
+    '''
+        método de atalho para inserção na primeira posição
+    '''
+    def insertFront(self, val):
+        self.insert(0, val)
+
+
+    '''
+        método de atalho para inserção na ultima posição
+    '''
+    def insertBack(self, val):
+        self.insert(self.__count, val)
+
+    '''
+        retorna o data do nodo da posição especificada
+    '''
+    def peek(self, pos):
+        #quando a lista estiver vazia ou a posição estiver fora dos limites validos (0 .. count -1), retorna None
+        if self.is_empty() or pos < 0 or pos > self.__count - 1:
+            return None
+        node = self.__head
+        for i in range(0, pos): node = node.next
+        return node.data
+
+    """
+        método para procurar um valor na lsita e retornar sua posição. Retorna -1 caso não encontre.
+    """
+    def index(self, val):
+        node = self.__head
+        for pos in range(0, self.__count):
+            if node.data == val: return pos
+            node = node.next
+        return -1 #não encontrou
+
+    """
+        método que exibe a pilha como um string (para fins de depuração)
+    """ 
+    def to_str(self):
+        string = ""
+        node = self.__head
+        for i in range(0, self.__count):
+            if string != "": string += ", "
+            string += f"(pos: {i}, data: {node.data})"
+            node = node.next
+        return "[ " + string + f" ], count: {self.__count}"
+
+        
 
 #########################################################
 
@@ -84,6 +136,23 @@ lista.insert(4, "sabonete")
 lista.insert(5, "shampoo")
 
 lista.insert(4, "papel")
+
+lista.insert(7, "sabão em pó")
+lista.insert(30, "detergente")
+
+#print(lista.to_str())
+
+lista.insertFront("5kg arroz")
+lista.insertBack("agua sanitaria")
+
+print(lista.to_str())
+
+print(f"info do nodo da posição 7: {lista.peek(7)}")
+print(f"info do nodo da posição 7: {lista.peek(13)}")
+
+print(f"posição de tomate: {lista.index('tomate')}")
+print(f"posição de café: {lista.index('café')}")
+print(f"posição de cebola: {lista.index('cebola')}")
 
 
 
