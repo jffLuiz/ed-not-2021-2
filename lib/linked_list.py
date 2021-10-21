@@ -111,6 +111,63 @@ class LinkedList:
         return -1 #não encontrou
 
     """
+        método para remover um elemento da lista
+    """
+    def remove(self, pos):
+        #1º caso: lista vazia ou posição fora dos limites(menor que 0 ou mais que count - 1)
+        if self.__count == 0 or pos < 0 or pos > self.__count -1:
+            return None
+
+        #2ºcaso: remoção do inicio da lista
+        if pos == 0:
+            removed = self.__head  #nodo removido
+            self.__head = self.__head.next #passa a apontar para o node seguinte
+
+        #3ºcaso: remoções intermediarias ou finais
+        else:
+            #percore a lista até encontrar o item anterior a posição a remoção (before)
+            before = self.__head
+            for i in range(1, pos): before = before.next
+
+            #o removido será o sucessor do before
+            removed = before.next
+
+            # nodo da posição seguinte à de remoção (next)
+            after = removed.next
+
+            #o nodo anterior (before) passa a apontar para o nodo seguinte (after) 
+            before.next = after
+
+            #atualizando o __tail no caso da remoção do ultimo nodo
+            if removed == self.__tail:
+                self.__tail = before
+
+
+
+        self.__count -= 1
+        #retorna o valor armazenado no nodo removido
+        return removed.data 
+
+    """
+        método para remover o primeiro nodo da lista 
+    """
+    def removeHead(self):
+        return self.remove(0)
+
+    """
+        método para remover o ultimo nodo da lista 
+    """
+    def removeTail(self):
+        return self.remove(self.__count - 1)
+   
+
+    """
+        método que retorna a quantidade de itens da lista
+    """
+    def count(self):
+        return self.__count
+
+    """
         método que exibe a pilha como um string (para fins de depuração)
     """ 
     def to_str(self):
@@ -125,34 +182,4 @@ class LinkedList:
         
 
 #########################################################
-
-lista = LinkedList()
-
-lista.insert(0, "1kg batata")
-lista.insert(1, "café")
-lista.insert(2, "miojo")
-lista.insert(3, "oleo")
-lista.insert(4, "sabonete")
-lista.insert(5, "shampoo")
-
-lista.insert(4, "papel")
-
-lista.insert(7, "sabão em pó")
-lista.insert(30, "detergente")
-
-#print(lista.to_str())
-
-lista.insertFront("5kg arroz")
-lista.insertBack("agua sanitaria")
-
-print(lista.to_str())
-
-print(f"info do nodo da posição 7: {lista.peek(7)}")
-print(f"info do nodo da posição 7: {lista.peek(13)}")
-
-print(f"posição de tomate: {lista.index('tomate')}")
-print(f"posição de café: {lista.index('café')}")
-print(f"posição de cebola: {lista.index('cebola')}")
-
-
 
