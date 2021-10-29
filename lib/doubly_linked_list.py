@@ -62,18 +62,18 @@ class DoublyLinkedList:
     """
         metodo que encontra a posição de um nodo, dado o seu valor
     """
-    def index(self, pos):
+    def index(self, val):
         #encontra a posição do meio da lista, se o resultado for fracionario, considera o proximo numero inteiro
-        meio = math.ceil(self.count / 2)
+        meio = math.ceil(self.__count / 2)
 
         #inicializa dois nodos, um com a cabeça e outro com a cauda da lista
         node1 = self.__head
         node2 = self.__tail
 
         #contador que vai até a metade da lista
-        for i in range(0, meio + 1):
-            if(node1.data == pos): return i #retorna a posição encontrada
-            if(node2.data == pos): return self.__count -1 -i #retorna posição retroativa
+        for pos in range(0, meio):
+            if(node1.data == val): return pos #retorna a posição encontrada
+            if(node2.data == val): return self.__count -1 - pos #retorna posição retroativa
             node1 = node1.next #node1 anda para frente
             node2 = node2.prev #node2 anda para tras
 
@@ -222,54 +222,3 @@ class DoublyLinkedList:
         return "[ " + string + f" ], count: {self.__count}"
 
 ###################################
-lista = DoublyLinkedList()
-print(lista.to_str())
-
-#inserção em lista vazia
-lista.insert(0, 'fusca')
-print(lista.to_str())
-
-#inserção no inicio da lista
-lista.insert(0, 'chevette')
-print(lista.to_str())
-
-#inserção no final da lista
-lista.insert(3, 'maverick')
-print(lista.to_str())
-
-#inserção no final da lista (2)
-lista.insert(4, 'opala')
-print(lista.to_str())
-
-#inserção no final da lista (3)
-lista.insert(5, 'del rey')
-print(lista.to_str())
-
-#inserção em posição intermediaria
-lista.insert(1, 'Gol')
-print(lista.to_str())
-
-#inserção em posição intermediaria
-lista.insert(4, 'Corcel')
-print(lista.to_str())
-
-#remoção do primeiro nodo
-removido = lista.remove(0)
-print(f"Removido primeira posição: {removido}")
-print(lista.to_str())
-
-#remoção do ultimo nodo
-removido = lista.remove(lista.count() - 1)
-print(f"Removido ultima posição: {removido}")
-print(lista.to_str())
-
-#remoção de posição intermediaria
-removido = lista.remove(2)
-print(f"Removido posição 2: {removido}")
-print(lista.to_str())
-
-#consulta o ultimo nodo
-ultimo = lista.peek_tail()
-print(f"ultimo nodo consultado: {ultimo}")
-print(lista.to_str())
-
